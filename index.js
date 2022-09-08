@@ -32,7 +32,7 @@ const asyncheckTx = async(req, res, next) =>{
     res.json(500)
   }
  
-  let connection = new Connection(clusterApiUrl('devnet'));
+  let connection = new Connection(clusterApiUrl('mainnet-beta'));
   //const tx =  connection.GetVersionedTransactionConfig(connection, )
   
   
