@@ -6,7 +6,7 @@ const solanaWeb3 = require('@solana/web3.js');
 const {Keypair,  SystemProgram, LAMPORTS_PER_SOL, Transaction, clusterApiUrl, sendAndConfirmTransaction, Connection} = require("@solana/web3.js");
 const bs58 = require('bs58');
 const bp = require('body-parser')
-console.log(process.env.SECRET);
+
 const keyPair = Keypair.fromSecretKey(
   bs58.decode(process.env.SECRET)
 );
