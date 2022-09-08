@@ -18,13 +18,10 @@ const minSolAmmount = 5
 
 
 
-app.use(express.static(path.join(__dirname, '../Client/build')));
+
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '../Client/build', 'index.html'));
-});
 
 const asyncheckTx = async(req, res, next) =>{
   const sign = req.body.sign
