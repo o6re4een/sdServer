@@ -61,7 +61,7 @@ app.post("/game",asyncheckTx, async(req, res) => {
   }
   let bid = parseFloat(req.body.bid)
   
-  if(typeof bid != "number"){
+  if(typeof bid !== "number"){
     return res.status(500).json("Incorrect bid")
   }
     // calc chances 
