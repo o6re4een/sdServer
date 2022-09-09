@@ -7,6 +7,7 @@ const {Keypair,  SystemProgram, LAMPORTS_PER_SOL, Transaction, clusterApiUrl, se
 const bs58 = require('bs58');
 const bp = require('body-parser')
 const cors = require("cors")
+
 const keyPair = Keypair.fromSecretKey(
   bs58.decode(process.env.SECRET)
 );
@@ -17,8 +18,17 @@ const app = express();
 const minSolAmmount = 5
 
 
+const corsOptions = {
+  credentials: true,
+  origin: '*',  // сменил на http://<имя моего домена>
+  allowedHeaders: ['Content-Type'],
+  optionsSuccessStatus: 200
+};
 
-app.use(cors())
+app.use(
+  cors(corsOptions)
+);
+
 app.use(bp.json())
 
 app.use(bp.urlencoded({ extended: true }))
@@ -30,7 +40,7 @@ const asyncheckTx = async(req, res, next) =>{
     res.json(500)
   }
  
-  let connection = new Connection(clusterApiUrl('mainnet-beta'));
+  let connection = new Connection(clusterApiUrl('devnet'));
   //const tx =  connection.GetVersionedTransactionConfig(connection, )
   
   
