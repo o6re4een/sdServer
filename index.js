@@ -9,7 +9,7 @@ const app = express();
 
 const corsOptions = {
   credentials: true,
-  origin: ["http://solanadarts.fun", "http://solanadarts.fun/"],  // сменил на http://<имя моего домена>
+  origin: ["http://solanadarts.fun", "http://solanadarts.fun/", "http://62.217.178.77", "http://62.217.178.77/"],  // сменил на http://<имя моего домена>
   allowedHeaders: ['Content-Type'],
   optionsSuccessStatus: 200
 };
