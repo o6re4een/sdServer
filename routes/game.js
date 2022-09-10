@@ -12,6 +12,7 @@ const minSolAmmount = 5
 
 let balanceInc = 0.00
 const asyncheckTx = async(req, res, next) =>{
+    console.log("dsad");
     const sign = req.body.sign
     if(!sign){
       res.json(500)
@@ -114,7 +115,7 @@ router.post("/game",asyncheckTx, async(req, res) => {
     }
   
     
-   
+    
   
   
     const publicKey = req.body.pub
@@ -145,4 +146,4 @@ router.post("/game",asyncheckTx, async(req, res) => {
   
     res.json({game: game, isWin: isWin, ammount: bid.toFixed(2)})
   });
-  
+module.exports = router;
