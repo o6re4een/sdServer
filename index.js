@@ -5,8 +5,12 @@ const gameRoute = require("./routes/game");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+const corsOptions = ({
+  origin: "http://solanadarts.fun"
+})
+
 app.use(
-  cors()
+  cors(corsOptions)
 );
 
 
