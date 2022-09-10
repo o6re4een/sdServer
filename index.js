@@ -16,6 +16,10 @@ app.use(
   cors(corsOptions)
 );
 
+app.options('/*', (_, res) => {
+  res.sendStatus(200);
+});
+
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 
