@@ -23,7 +23,7 @@ app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 
 
-app.use("/api/game", gameRoute);
+app.use("/api", gameRoute);
 
 
 
