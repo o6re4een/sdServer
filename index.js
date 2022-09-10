@@ -8,8 +8,7 @@ const app = express();
 
 
 const corsOptions = {
-  origin: ["http://solanadarts.fun", "http://solanadarts.fun:80", "http://62.217.178.77:80", "http://62.217.178.77:80"],  // сменил на http://<имя моего домена>
-  allowedHeaders: ['Content-Type'],
+  origin: ["http://solanadarts.fun", "http://solanadarts.fun:80", "http://62.217.178.77:80", "http://62.217.178.77:80", "http://127.0.0.1:80"],  // сменил на http://<имя моего домена>
   optionsSuccessStatus: 200
 };
 
