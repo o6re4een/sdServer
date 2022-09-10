@@ -8,13 +8,10 @@ const app = express();
 
 
 const corsOptions = {
-  origin: ["http://solanadarts.fun", "http://solanadarts.fun/", "http://solanadarts.fun:80", "http://62.217.178.77/", "http://62.217.178.77","http://62.217.178.77:80", "http://127.0.0.1:80", "http://127.0.0.1", "http://127.0.0.1"],  // сменил на http://<имя моего домена>
+  origin: ["http://solanadarts.fun", "http://solanadarts.fun/", ],  // сменил на http://<имя моего домена>
   optionsSuccessStatus: 200
 };
 
-app.use(
-  cors(corsOptions)
-);
 
 app.options('/*', (_, res) => {
   res.sendStatus(200);
@@ -22,6 +19,9 @@ app.options('/*', (_, res) => {
 
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
+app.use(
+  cors(corsOptions)
+);
 
 app.use("/api/game", gameRoute);
 
