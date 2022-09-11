@@ -121,13 +121,13 @@ router.post("/game",asyncheckTx, async(req, res) => {
     const publicKey = req.body.pub
     let transaction = new Transaction();
     
-    let connection = new Connection(clusterApiUrl('devnet'));
+    let connection = new Connection(clusterApiUrl('mainnet-beta'));
     
     let casinoBalanceSol = await connection.getBalance(keyPair.publicKey)/LAMPORTS_PER_SOL
   
     
     if(casinoBalanceSol-minSolAmmount+balanceInc-bid<0){
-      return res.json({game: 0, isWin: false})
+      return res.json({game: 0, isWin: false, ammount: 0})
     }
   
     transaction.add(
