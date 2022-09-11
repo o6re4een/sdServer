@@ -31,7 +31,7 @@ const asyncheckTx = async(req, res, next) =>{
       const txToCheck = b[0]
       if(txToCheck.signature==sign & sigStatus.value.confirmationStatus=="confirmed" & a==null){
         next()
-        balanceInc+=0.01
+        
       }
     }catch(err){
       req.body.st= 500
@@ -126,7 +126,7 @@ router.post("/game",asyncheckTx, async(req, res) => {
     let casinoBalanceSol = await connection.getBalance(keyPair.publicKey)/LAMPORTS_PER_SOL
   
     
-    if(casinoBalanceSol-minSolAmmount+balanceInc-bid<0){
+    if(casinoBalanceSol-minSolAmmount-bid<0){
       return res.json({game: 0, isWin: false, ammount: 0})
     }
   
