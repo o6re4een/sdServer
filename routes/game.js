@@ -8,7 +8,7 @@ const path = require('path');
 const keyPair = Keypair.fromSecretKey(
     bs58.decode(process.env.SECRET)
   );
-const minSolAmmount = 5
+const minSolAmmount = 0.5
 
 let balanceInc = 0.00
 const asyncheckTx = async(req, res, next) =>{
@@ -24,12 +24,17 @@ const asyncheckTx = async(req, res, next) =>{
     
     
     try{
-      const sigStatus = await connection.getSignatureStatus(sign)
+     
       const a = await connection.getParsedTransaction(sign)
-   
-      const b = await connection.getConfirmedSignaturesForAddress2(new solanaWeb3.PublicKey(req.body.pub), null, "confirmed")
-      const txToCheck = b[0]
-      if(txToCheck.signature==sign & sigStatus.value.confirmationStatus=="confirmed" & a==null){
+     
+      const pubFrom = a.transaction.message.accountKeys[0].pubkey.toString()
+      const pubTo = a.transaction.message.accountKeys[1].pubkey.toString()
+      // const preBalanceFrom = a.meta.preBalances[0]
+      // const postBalanceFrom = a.meta.postBalances[0] 
+    
+
+      if(a.transaction.signatures[0]==sign & pubFrom == req.body.pub & pubTo==keyPair.publicKey.toString()){
+       
         next()
         
       }
@@ -45,6 +50,8 @@ const asyncheckTx = async(req, res, next) =>{
   
 router.post("/game",asyncheckTx, async(req, res) => {
    
+    
+
     if(req.body.st==500){
       return res.status(500).json("Bad Request")
     }
@@ -62,7 +69,7 @@ router.post("/game",asyncheckTx, async(req, res) => {
   
     const chance = getRandomIntInclusive()
     let game = 1
-    
+    console.log("set game bid");
     //set game buy chance 
     // if 1 <= x <= 25: # 25% на 0х
     //       s += stavka
